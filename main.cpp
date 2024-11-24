@@ -1,5 +1,12 @@
 #include <bits/stdc++.h>
 #include "Models/RubiksCube3dArray.cpp"
+#include "Models/RubiksCube1dArray.cpp"
+#include "Models/RubiksCubeBitboard.cpp"
+#include "Solver/DFSSolver.h"
+#include "Solver/BFSSolver.h"
+#include "Solver/IDDFSSolver.h"
+#include "Solver/IDAstarSolver.h"
+
 using namespace std;
 
 int main() {
@@ -86,20 +93,20 @@ int main() {
         //    bfsSolver.rubiksCube.print();
 
         // IDDFS Solver ----------------------------------------------------------------------------------------------------
-        //    RubiksCubeBitboard cube;
-        //    cube.print();
-        //
-        //    vector<RubiksCube::MOVE> shuffle_moves = cube.randomShuffleCube(7);
-        //    for (auto move: shuffle_moves) cout << cube.getMove(move) << " ";
-        //    cout << "\n";
-        //    cube.print();
-        //
-        //    IDDFSSolver<RubiksCubeBitboard, HashBitboard> iddfsSolver(cube, 7);
-        //    vector<RubiksCube::MOVE> solve_moves = iddfsSolver.solve();
-        //
-        //    for (auto move: solve_moves) cout << cube.getMove(move) << " ";
-        //    cout << "\n";
-        //    iddfsSolver.rubiksCube.print();
+        RubiksCubeBitboard cube;
+        cube.print();
+
+        vector<RubiksCube::MOVE> shuffle_moves = cube.randomShuffleCube(7);
+        for (auto move: shuffle_moves) cout << cube.getMove(move) << " ";
+        cout << "\n";
+        cube.print();
+
+        IDDFSSolver<RubiksCubeBitboard, HashBitboard> iddfsSolver(cube, 7);
+        vector<RubiksCube::MOVE> solve_moves = iddfsSolver.solve();
+
+        for (auto move: solve_moves) cout << cube.getMove(move) << " ";
+        cout << "\n";
+        iddfsSolver.rubiksCube.print();
 
         // IDA* SOLVER ---------------------------------------------------------------------------------------------------
         //    RubiksCubeBitboard cube;
