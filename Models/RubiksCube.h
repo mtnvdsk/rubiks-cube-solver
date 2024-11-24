@@ -1,16 +1,9 @@
-#ifndef RUBIKS_CUBE_SOLVER_RUBIKSCUBE_H
-#define RUBIKS_CUBE_SOLVER_RUBIKSCUBE_H
+#ifndef RUBIKS_CUBE_SOLVER
+#define RUBIKS_CUBE_SOLVER
 
 #include "bits/stdc++.h"
 
 using namespace std;
-
-/**
- * A base class for all Rubik's Cube Model. There are various representation for Rubik's Cube.
- * Each one has it's own special ways of definitions. This class provides a shared functionality
- * between all models.
- * We'll benchmark all models and observe which one is better for performance.
- */
 
 class RubiksCube {
 public:
@@ -41,100 +34,92 @@ public:
         B, BPRIME, B2
     };
 
-    /*
-     * Returns the color of the cell at (row, col) in face.
-     * If Rubik's Cube face is pointing at you, then the row numbering starts from the
-     * top to bottom, and column numbering starts from the left to right.
-     * The rows and columns are 0-indexed.
-     * @param Face, row, and column index
-     */
+    
+    // Returns the color of the cell at (row, col) in face.
     virtual COLOR getColor(FACE face, unsigned row, unsigned col) const = 0;
 
-    /*
-     * Returns the first letter of the given COLOR
-     * Eg: For COLOR::GREEN, it returns 'G'
-     */
+
+    //Returns the first letter of the given COLOR
+
     static char getColorLetter(COLOR color);
 
-    /*
-     * Returns true if the Rubik Cube is solved, otherwise returns false.
-     */
+    //Returns true if the Rubik Cube is solved, otherwise returns false.
+    
     virtual bool isSolved() const = 0;
 
-    /*
-     * Returns the move in the string format.
-     */
+
+    //Returns the move in the string format.
+    
     static string getMove(MOVE ind);
 
-    /*
-     * Print the Rubik Cube in Planar format.
-     *
-     * The cube is laid out as follows.
-     *
-     * The sides:
-     *    U
-     *  L F R B
-     *    D
-     *
-     * Color wise:
-     *
-     *          W W W
-     *          W W W
-     *          W W W
-     *
-     *  G G G   R R R   B B B   O O O
-     *  G G G   R R R   B B B   O O O
-     *  G G G   R R R   B B B   O O O
-     *
-     *          Y Y Y
-     *          Y Y Y
-     *          Y Y Y
-     *
-     * Row and Column Numberings:
-     * rx -> row numbering
-     * cx -> column numbering
-     * bx -> both row and column numbering
-     *
-     *             b0 c1 c2
-     *             r1  .  .
-     *             r2  .  .
-     *
-     *  b0 c1 c2   b0 c1 c2   b0 c1 c2   b0 c1 c2
-     *  r1  .  .   r1  .  .   r1  .  .   r1  .  .
-     *  r2  .  .   r2  .  .   r2  .  .   r2  .  .
-     *
-     *             b0 c1 c2
-     *             r1  .  .
-     *             r2  .  .
-     *
-     */
+    //
+    // Print the Rubik Cube in Planar format.
+    //
+    // The cube is laid out as follows.
+    //
+    // The sides:
+    //    U
+    //  L F R B
+    //    D
+    //
+    // Color wise:
+    //
+    //          W W W
+    //          W W W
+    //          W W W
+    //
+    //  G G G   R R R   B B B   O O O
+    //  G G G   R R R   B B B   O O O
+    //  G G G   R R R   B B B   O O O
+    //
+    //          Y Y Y
+    //          Y Y Y
+    //          Y Y Y
+    //
+    // Row and Column Numberings:
+    // rx -> row numbering
+    // cx -> column numbering
+    // bx -> both row and column numbering
+    //
+    //             b0 c1 c2
+    //             r1  .  .
+    //             r2  .  .
+    //
+    //  b0 c1 c2   b0 c1 c2   b0 c1 c2   b0 c1 c2
+    //  r1  .  .   r1  .  .   r1  .  .   r1  .  .
+    //  r2  .  .   r2  .  .   r2  .  .   r2  .  .
+    //
+    //             b0 c1 c2
+    //             r1  .  .
+    //             r2  .  .
+    //
+    //
     virtual void print() const;
 
-    /*
-     * Randomly shuffle the cube with 'times' moves and returns the moves performed.
-     */
+    
+     //Randomly shuffle the cube with 'times' moves and returns the moves performed.
     vector<MOVE> randomShuffleCube(unsigned int times);
 
-    /*
-     * Perform moves on the Rubik Cube
-     */
+    
+     //Perform moves on the Rubik Cube
+
     RubiksCube &move(MOVE ind);
 
-    /*
-     * Invert a move
-     */
+    
+     //Invert a move
+
     RubiksCube &invert(MOVE ind);
 
-    /*
-     * Rotational Moves on the Rubik Cubes
-     *
-     * F, F’, F2,
-     * U, U’, U2,
-     * L, L’, L2,
-     * D, D’, D2,
-     * R, R’, R2,
-     * B, B’, B2
-     */
+    //
+     //Rotational Moves on the Rubik Cubes
+    //
+     //F, F’, F2,
+     //U, U’, U2,
+     //L, L’, L2,
+     //D, D’, D2,
+     //R, R’, R2,
+     //B, B’, B2
+     //
 
     virtual RubiksCube &f() = 0;
 
@@ -180,4 +165,4 @@ public:
 };
 
 
-#endif //RUBIKS_CUBE_SOLVER_RUBIKSCUBE_H
+#endif
